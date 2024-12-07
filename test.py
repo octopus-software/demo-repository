@@ -1,2 +1,2 @@
-print("hello second world!!!!!!!!!!!!!! I AM TAKESHI")
-print("HAHAHA!!!!!!")
+print("hello second world!!!!!!!!!!!!!!")
+print("Go home!!!")
