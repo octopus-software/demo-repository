@@ -1,0 +1,45 @@
+@startuml test
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+entity users as "users\nユーザー" {
+   - id: bigint unsigned ユーザーID
+   name: varchar100 名前
+   email: varchar100 メールアドレス
+   email_verified_at: timestamp メール認証日
+   password: varchar パスワード
+   remember_token: varchar ログイン記憶トークン
+   --
+   created_at: timestamp 作成日
+   updated_at: timestamp 更新日
+}
+entity daily_reports as "daily_reports\n日報" {
+   - id: bigint unsigned 日報ID
+   # user_id: bigint unsigned ユーザーID
+   # store_id: bigint unsigned 店舗ID
+   day: date 日付
+   new_people: smallint unsigned 新規客数
+   repert_people: smallint unsigned リピート客数
+   sales: int unsigned 売上
+   --
+   created_at: timestamp 作成日
+   updated_at: timestamp 更新日
+}
+entity stores as "stores\n店舗" {
+   - id: bigint unsigned 店舗ID
+   name: varchar50 店舗名
+   --
+   created_at: timestamp 作成日
+   updated_at: timestamp 更新日
+}
+entity store_user as "store_user\n所属店舗" {
+   # store_id: bigint unsigned 店舗ID
+   # user_id: bigint unsigned ユーザーID
+}
+
+users ||--o{store_user
+stores ||--o{store_user
+users ||--o{daily_reports
+stores ||--o{daily_reports
+@enduml
